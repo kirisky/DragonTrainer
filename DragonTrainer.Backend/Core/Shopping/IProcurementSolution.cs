@@ -9,6 +9,6 @@ namespace DragonTrainer.Backend.Core.Shopping
          UserInfo UserInfo { get; set; }
          void GetItems();
          bool PurchasePotions();
-         bool PurchaseBuffs();
+         bool PurchaseLevels();
     }
 }

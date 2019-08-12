@@ -30,18 +30,14 @@ namespace DragonTrainer.Backend.Services
             return JsonConvert.DeserializeObject<List<ItemInfo>>(content);
         }
 
-        public async Task<PurchaseResult> Purchase(string itemId, string gameId)
+        public async Task<PurchaseResult> Purchase(string gameId, string itemId)
         {
-            var json = JsonConvert.SerializeObject(new {
-                gameId = gameId,
-                itemId = itemId
-            });
-            var httpContent = new StringContent(json);
+            var uri = _baseUri +
+                      _itemPurchasingUri
+                        .Replace(":gameId", gameId)
+                        .Replace(":itemId", itemId);
 
-            var content = await _requestor.PostRequest(
-                _baseUri + _itemPurchasingUri,
-                httpContent
-            );
+            var content = await _requestor.PostRequest(uri, null);
             
             return JsonConvert.DeserializeObject<PurchaseResult>(content);
         }

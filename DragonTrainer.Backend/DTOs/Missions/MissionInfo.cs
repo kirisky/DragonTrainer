@@ -4,7 +4,8 @@ namespace DragonTrainer.Backend.DTOs.Missions
     {
         public string AdId { get; set; }
         public string Message { get; set; }
-        public string Reward { get; set; }
-        public int ExpriresIn { get; set; }
+        public int Reward { get; set; }
+        public int ExpiresIn { get; set; }
+        public string Probability { get; set; }
     }
 }

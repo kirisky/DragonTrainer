@@ -10,26 +10,20 @@ namespace DragonTrainer.Backend.Services
     {
         private readonly GameRequestor _requestor;
         private readonly string _baseUri;
-        private readonly string _investigation;
+        private readonly string _investigationUri;
 
         public InvestigationService(GameRequestor gameRequestor)
         {
             _requestor = gameRequestor;
             _baseUri = "https://dragonsofmugloar.com";
-            _investigation = "/api/v2/:gameId/investigate/reputation";
+            _investigationUri = "/api/v2/:gameId/investigate/reputation";
         }
 
         public async Task<Reputation> Investigate(string gameId)
         {
-            var json = JsonConvert.SerializeObject(new {
-                gameId = gameId
-            });
-            var httpContent = new StringContent(json);
+            var uri = _baseUri + _investigationUri.Replace(":gameId", gameId);
 
-            var content = await _requestor.PostRequest(
-                _baseUri + _investigation,
-                httpContent
-            );
+            var content = await _requestor.PostRequest(uri, null);
             return JsonConvert.DeserializeObject<Reputation>(content);
         }
     }

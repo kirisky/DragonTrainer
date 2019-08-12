@@ -5,7 +5,7 @@ using DragonTrainer.Backend.Core.Missions;
 using DragonTrainer.Backend.Core.Shopping;
 using DragonTrainer.Backend.DTOs;
 using DragonTrainer.Backend.Helpers;
-using System;
+using System.Net.Http;
 
 namespace DragonTrainer.Backend.Core
 {
@@ -23,9 +23,9 @@ namespace DragonTrainer.Backend.Core
 
 
             // initialize http requestor
-            var gameRequestor = new GameRequestor();
+            var gameRequestor = new GameRequestor(new HttpClient());
 
-            
+
             // initialize logic of Game API
             var gameService = new GameService(gameRequestor);
             // create a container of user information
@@ -35,6 +35,7 @@ namespace DragonTrainer.Backend.Core
             // initialize user information with a object-obejct mapper
             var mapper = MapperHelper.Build();
             userInfo = mapper.Map<GameInfo, UserInfo>(result);
+            userInfo.TurnsInARound = 0;
 
 
             // initialize logic of Shop APIs
@@ -63,7 +64,7 @@ namespace DragonTrainer.Backend.Core
         {
             _userInfo = userInfo;
             _store = store;
-            _missionBoard = missionBoard; 
+            _missionBoard = missionBoard;
 
             _store.RefreshStore();
         }
@@ -77,20 +78,28 @@ namespace DragonTrainer.Backend.Core
                 if (FeelExhausted())
                 {
                     InfoHelper.DisplayRecoverHP(_store.RecoverHP());
-                    InfoHelper.DisplayHaveBuffs(_store.HaveBuffs());
                 }
 
-                do
+                InfoHelper.DisplayLevelUp(_store.LevelUp());
+
+                _missionBoard.RefreshMissionBoard();
+                InfoHelper.DisplayMissionBoardIsRefreshed();
+
+                // if pick nothing, The Missions Board will be refreshed.
+                if (!_missionBoard.PickMissions()) continue;
+
+                // when The Mission Board is empty, buy items and refresh the board.
+                while (!_missionBoard.MissionBoardIsEmpty())
                 {
-                    if (_missionBoard.MissionBoardIsEmpty()) 
+                    // when the mission is failed, buy items and refresh the board.
+                    if (!_missionBoard.PerformTheMission())
                     {
-                        _missionBoard.RefreshMissionBoard();
-                        InfoHelper.DisplayMissionBoardIsRefreshed();
+                        IsFailed(); 
+                        break;
                     }
 
-                    _missionBoard.PerformTheBestMission();
-
-                } while (Succeeded()); 
+                    IsSucceeded();
+                }
             }
 
             EndGame();
@@ -104,29 +113,34 @@ namespace DragonTrainer.Backend.Core
         private bool IsStillAlive()
         {
             var lives = _userInfo.Lives;
-            if (lives > 0)
-            {
-                InfoHelper.DisplayStiilAlive(lives);
-                return true;
-            }
+            if (lives == 0) return false;
 
-            return false;
+            InfoHelper.DisplayIsStillAlive(lives);
+            return true;
         }
 
         private bool FeelExhausted()
         {
-            var lives = _userInfo.Lives;
-
-            var needRecover = lives > 1 ? false : true;
-            InfoHelper.DisplayNeedRecovering(needRecover, lives);
+            var needRecover = _userInfo.Lives == 1 ? true : false;
+            InfoHelper.DisplayNeedRecovering(needRecover);
 
             return needRecover;
         }
 
-        private bool Succeeded()
+        private void IsSucceeded()
         {
-            InfoHelper.DisplayMissionResult(_userInfo.LastMissionResult);
-            return  _userInfo.LastMissionResult;
+            InfoHelper.DisplayMissionResult(
+                true, _userInfo.Score,
+                _userInfo.Turn, _userInfo.Gold
+            );
+        }
+
+        private void IsFailed()
+        {
+            InfoHelper.DisplayMissionResult(
+                false, _userInfo.Score,
+                _userInfo.Turn, _userInfo.Gold
+            );
         }
 
 

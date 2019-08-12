@@ -5,22 +5,22 @@ namespace DragonTrainer.Backend.Services.Http
 {
     public class GameRequestor
     {
+        private HttpClient _httpClient;
+
+        public GameRequestor(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
         public async Task<string> GetRequest(string uri)
         {
-            using (var client = new HttpClient())
-            {
-                return await client.GetStringAsync(uri);
-            }
+            return await _httpClient.GetStringAsync(uri);
         }
 
         public async Task<string> PostRequest(string uri, HttpContent content)
         {
-            using (var client = new HttpClient())
-            {
-                var response = await client.PostAsync(uri, content);
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-            }
+            var response = await _httpClient.PostAsync(uri, content);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
         }
     }
 }

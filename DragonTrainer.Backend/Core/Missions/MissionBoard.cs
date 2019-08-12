@@ -20,8 +20,13 @@ namespace DragonTrainer.Backend.Core.Missions
         {
             return _warrior.MissionsIsClean();
         }
+        
+        public bool PickMissions()
+        {
+            return _warrior.PickMissions();
+        }
 
-        public bool PerformTheBestMission()
+        public bool PerformTheMission()
         {
             return _warrior.SolveTheTask();
         }

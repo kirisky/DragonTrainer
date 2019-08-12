@@ -19,9 +19,9 @@ namespace DragonTrainer.Backend.Core.Shopping
             return _solution.PurchasePotions();
         }
 
-        public bool HaveBuffs()
+        public bool LevelUp()
         {
-            return _solution.PurchaseBuffs();
+            return _solution.PurchaseLevels();
         }
     }
 }

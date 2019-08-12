@@ -30,18 +30,14 @@ namespace DragonTrainer.Backend.Services
             return JsonConvert.DeserializeObject<List<MissionInfo>>(content);
         }
 
-        public async Task<MissionResult> SovleMission(string missionId, string gameId)
+        public async Task<MissionResult> SovleMission(string gameId, string missionId)
         {
-            var json = JsonConvert.SerializeObject(new {
-                gameId = gameId,
-                adId = missionId
-            });
-            var httpContent = new StringContent(json);
+            var uri = _baseUri + 
+                      _missionSolvingUri
+                        .Replace(":gameId", gameId)
+                        .Replace(":adId", missionId);
 
-            var content = await _requestor.PostRequest(
-                _baseUri + _missionSolvingUri,
-                httpContent
-            );
+            var content = await _requestor.PostRequest(uri, null);
             return JsonConvert.DeserializeObject<MissionResult>(content);
         }
     }

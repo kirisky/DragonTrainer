@@ -10,6 +10,7 @@ namespace DragonTrainer.Backend.Core.Missions
 
         void GetMissions();
         bool MissionsIsClean();
+        bool PickMissions();
         bool SolveTheTask();
     }
 }
