@@ -1,6 +1,6 @@
 # Dragon Trainer
 
-## Table of Contents
+#### Table of Contents
 
 * [Dragon Trainer](#dragon-trainer)   
   * [Picture of logic](#picture-of-logic)  
@@ -13,7 +13,6 @@
 ## Picture of logic
 This is the logic of the project.
 ![Logic](./Docs/Images/DragonTrainers.svg)
-
 
 
 ## Package Requirements
