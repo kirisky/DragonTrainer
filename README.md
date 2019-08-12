@@ -3,6 +3,14 @@
 This is the logic of the project.
 ![Logic](./Docs/Images/DragonTrainers.svg)
 
+## Table of Contents
+
+* [Dragon Trainer](#dragon-trainer)   
+  * [Package Requirements](#package-requirements)  
+  * [Usage](#usage)  
+  * [Directory Structure](#directory-structure)  
+  * [Mission Description](#mission-description)  
+
 ## Package Requirements
 
 #### DragonTrainer.Backend
@@ -90,10 +98,10 @@ dotnet test
 - `GameRequestor.cs` defines methods for Get and Post Requests.
 
 
-## Mission Descriptions
+## Mission Description
 
 #### solution
-only pick missions in difficulties with the  above difficulty order
+only pick missions in difficulties with the following difficulty order
 1. Sure thing
 2. Piece of cake
 3. Walk in the park
