@@ -92,7 +92,7 @@ dotnet test
 
 ## Mission Descriptions
 
-### solution
+#### solution
 only pick missions in difficulties with the  above difficulty order
 1. Sure thing
 2. Piece of cake
@@ -110,14 +110,14 @@ If gold is greater than 300, buy buffs that cost 300 golds until you gold less t
 Once mission failed, check your lives and buy buffs.
 
 
-## Special Symbol
+#### Special Symbol
 Encrypted 1 = base64   
 Encrypted 2 
 
-## equipment can add level number
+#### equipment can add level number
 300 gold add 2 levels  
 100 gold add 1 level
 
-## Turns will affect the rate of success
+#### Turns will affect the rate of success
 The difficulty is higher when the The number of Turns is bigger.  
 The difficulty is higher when the score is higher.
