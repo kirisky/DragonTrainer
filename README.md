@@ -1,15 +1,20 @@
 # Dragon Trainer
 
-This is the logic of the project.
-![Logic](./Docs/Images/DragonTrainers.svg)
-
 ## Table of Contents
 
 * [Dragon Trainer](#dragon-trainer)   
+  * [Picture of logic](#picture-of-logic)  
   * [Package Requirements](#package-requirements)  
   * [Usage](#usage)  
   * [Directory Structure](#directory-structure)  
   * [Mission Description](#mission-description)  
+
+
+## Picture of logic
+This is the logic of the project.
+![Logic](./Docs/Images/DragonTrainers.svg)
+
+
 
 ## Package Requirements
 
