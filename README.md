@@ -19,34 +19,34 @@ This is the logic of the project.
 ## 10 Times Test Record
 
 The average score: 1842.1
-1. First Time - Score: 4418 - Date: 08-13-2019 18:22:05
+1. First Time - Score: 4418 - Date: 08-13-2019 18:22:05    
 ![Logic](./Docs/Images/10times/FirstTime-2019-08-13-182205.png)
 
-2. Second Time - Score: 1560 - Date: 08-13-2019 18:23:11
+2. Second Time - Score: 1560 - Date: 08-13-2019 18:23:11    
 ![Logic](./Docs/Images/10times/SecondTime-2019-08-13-182311.png)
 
-3. Third Time - Score: 1961 - Date: 08-13-2019 18:24:02
+3. Third Time - Score: 1961 - Date: 08-13-2019 18:24:02    
 ![Logic](./Docs/Images/10times/ThirdTime-2019-08-13-182402.png)
 
-4. Fourth Time - Score: 3654 - Date: 08-13-2019 18:24:47
+4. Fourth Time - Score: 3654 - Date: 08-13-2019 18:24:47    
 ![Logic](./Docs/Images/10times/FourthTime-2019-08-13-182447.png)
 
-5. Fifth Time - Score: 24 - Date: 08-13-2019 18:25:14
+5. Fifth Time - Score: 24 - Date: 08-13-2019 18:25:14    
 ![Logic](./Docs/Images/10times/FifthTime-2019-08-13-182514.png)
 
-6. Sixth Time - Score: 2696 - Date: 08-13-2019 18:25:48
+6. Sixth Time - Score: 2696 - Date: 08-13-2019 18:25:48    
 ![Logic](./Docs/Images/10times/SixthTime-2019-08-13-182548.png)
-
-7. Seventh Time - Score: 818 - Date: 08-13-2019 18:26:18
+ 
+7. Seventh Time - Score: 818 - Date: 08-13-2019 18:26:18    
 ![Logic](./Docs/Images/10times/SeventhTime-2019-08-13-182618.png)
 
-8. Eighth Time - Score: 835 - Date: 08-13-2019 18:26:53
+8. Eighth Time - Score: 835 - Date: 08-13-2019 18:26:53    
 ![Logic](./Docs/Images/10times/EighthTime-2019-08-13-182653.png)
 
-9. Ninth Time - Score: 1025 - Date: 08-13-2019 18:27:31
+9. Ninth Time - Score: 1025 - Date: 08-13-2019 18:27:31    
 ![Logic](./Docs/Images/10times/NinthTime-2019-08-13-182731.png)
 
-10. Tenth Time - Score: 1430 - Date: 08-13-2019 18:28:12
+10. Tenth Time - Score: 1430 - Date: 08-13-2019 18:28:12    
 ![Logic](./Docs/Images/10times/TenthTime-2019-08-13-182812.png)
 
 ## Package Requirements
