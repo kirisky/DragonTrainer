@@ -17,12 +17,12 @@ namespace DragonTrainer.Backend.Helpers
 
         public static void DisplayNeedRecovering(bool need)
         {
-            if (need) Say($"I only have [1]HP now. I need recovering!");
+            if (need) Say($"I only have [1 HP] now. I need recovering!");
         }
 
         public static void DisplayIsStillAlive(int lives)
         {
-            Say($"I have [{lives}]HP now. So, I am still alive.");
+            Say($"I have [{lives} HP] now. So, I am still alive.");
         }
 
         public static void DisplayResultOfTheGame(int score)
@@ -42,10 +42,9 @@ namespace DragonTrainer.Backend.Helpers
             Say($"Recovering HP is {msg}!");
         }
 
-        public static void DisplayLevelUp(bool result)
+        public static void DisplayLevelUp()
         {
-            var msg = result ? "succeeded" : "failed";
-            Say($"Level up is {msg}!");
+            Say($"Level up is succeeded!");
         }
 
         public static void DisplayMissionResult(bool result, int score, int turn, int gold)
@@ -59,15 +58,14 @@ namespace DragonTrainer.Backend.Helpers
             );
         }
 
-        public static void DisplayMissionInfo(int expiresIn, int lives, int turns, int score, int gold)
+        public static void DisplayPostRequestInfo(string uri)
         {
-            Say(
-                $"ExpiresIn: {expiresIn}, " +
-                $"Lives: {lives} " +
-                $"Turn: {turns}, " +
-                $"Score: {score}, " +
-                $"Gold: {gold}"
-            );
+            Say($"Send post request to [{uri}]!");
+        }
+
+        public static void DisplayGetRequestInfo(string uri)
+        {
+            Say($"Send get request to [{uri}]!");
         }
 
         private static void Say(string msg)

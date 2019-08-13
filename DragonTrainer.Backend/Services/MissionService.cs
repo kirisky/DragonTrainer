@@ -7,14 +7,14 @@ using Newtonsoft.Json;
 
 namespace DragonTrainer.Backend.Services
 {
-    public class MissionService
+    public class MissionService : IMissionService
     {
-        private readonly GameRequestor _requestor;
-        private readonly string _baseUri;
-        private readonly string _missionsUri;
-        private readonly string _missionSolvingUri;
+        private  IGameRequestor _requestor;
+        private  readonly string _baseUri;
+        private  readonly string _missionsUri;
+        private  readonly string _missionSolvingUri;
 
-        public MissionService(GameRequestor gameRequestor)
+        public MissionService(IGameRequestor gameRequestor)
         {
             _requestor = gameRequestor;
             _baseUri = "https://dragonsofmugloar.com";
@@ -30,7 +30,7 @@ namespace DragonTrainer.Backend.Services
             return JsonConvert.DeserializeObject<List<MissionInfo>>(content);
         }
 
-        public async Task<MissionResult> SovleMission(string gameId, string missionId)
+        public async Task<MissionResult> SolveMission(string gameId, string missionId)
         {
             var uri = _baseUri + 
                       _missionSolvingUri

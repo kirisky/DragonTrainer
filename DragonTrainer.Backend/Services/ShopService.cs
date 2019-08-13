@@ -7,14 +7,14 @@ using Newtonsoft.Json;
 
 namespace DragonTrainer.Backend.Services
 {
-    public class ShopService
+    public class ShopService : IShopService
     {
-        private readonly GameRequestor _requestor;
+        private readonly IGameRequestor _requestor;
         private readonly string _baseUri;
         private readonly string _itemsUri;
         private readonly string _itemPurchasingUri;
 
-        public ShopService(GameRequestor gameRequestor)
+        public ShopService(IGameRequestor gameRequestor)
         {
             _requestor = gameRequestor;
             _baseUri = "https://dragonsofmugloar.com";
@@ -41,7 +41,6 @@ namespace DragonTrainer.Backend.Services
             
             return JsonConvert.DeserializeObject<PurchaseResult>(content);
         }
-
 
     }
 }

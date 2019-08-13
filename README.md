@@ -12,7 +12,8 @@
 
 ## Picture of logic
 This is the logic of the project.
-![Logic](./Docs/Images/DragonTrainers.svg)
+<!-- ![Logic](./Docs/Images/DragonTrainers.svg) -->
+![Logic](./Docs/Images/DragonTrainers.png)
 
 
 ## Package Requirements

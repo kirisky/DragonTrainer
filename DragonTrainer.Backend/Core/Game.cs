@@ -42,20 +42,16 @@ namespace DragonTrainer.Backend.Core
             var shopService = new ShopService(gameRequestor);
             // initialize strategy of items buying
             var solution = new NewbieProcurementSolution();
-            solution.ShopService = shopService;
-            solution.UserInfo = userInfo;
             // initialize logic of store
-            var store = new Store(solution);
+            var store = new Store(solution, shopService, userInfo);
 
 
             // initialize logic of Message APIs
             var missionService = new MissionService(gameRequestor);
             // initialize strategy of task choosing
             var warrior = new NewbieWarrior();
-            warrior.MissionService = missionService;
-            warrior.UserInfo = userInfo;
             // initialize logic of mission picking and performing
-            var missionBoard = new MissionBoard(warrior);
+            var missionBoard = new MissionBoard(warrior, missionService, userInfo);
 
             return new Game(userInfo, store, missionBoard);
         }
@@ -80,7 +76,9 @@ namespace DragonTrainer.Backend.Core
                     InfoHelper.DisplayRecoverHP(_store.RecoverHP());
                 }
 
-                InfoHelper.DisplayLevelUp(_store.LevelUp());
+                // make your level is as high as possible
+                _store.LevelUp();
+                InfoHelper.DisplayLevelUp();
 
                 _missionBoard.RefreshMissionBoard();
                 InfoHelper.DisplayMissionBoardIsRefreshed();

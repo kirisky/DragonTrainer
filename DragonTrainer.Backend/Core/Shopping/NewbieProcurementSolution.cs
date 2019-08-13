@@ -1,82 +1,40 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using DragonTrainer.Backend.DTOs;
 using DragonTrainer.Backend.DTOs.Shop;
-using DragonTrainer.Backend.Helpers;
 using DragonTrainer.Backend.Services;
 
 namespace DragonTrainer.Backend.Core.Shopping
 {
     public class NewbieProcurementSolution : IProcurementSolution
     {
-        private List<ItemInfo> _items;
-
-        public ShopService ShopService { get; set; }
-        public UserInfo UserInfo { get; set; }
-        public MapperHelper Mapper { get; set; }
-
-        public void GetItems()
+        public List<ItemInfo> GetItems(IShopService shopService, string gameId)
         {
-            _items = ShopService.GetItemList(UserInfo.GameId).Result;
+            return shopService.GetItemList(gameId).Result;
         }
 
-        public bool PurchasePotions()
+        public ItemInfo PickAPotion(List<ItemInfo> items, int userBalance)
         {
-            var item = FetchItem("Healing potion");
-            Console.WriteLine(
-                $"Name: {item.Name}",
-                $"Id: {item.Id}",
-                $"Cost: {item.Cost}"
-            );
-            if (item.Cost > UserInfo.Gold) return false;
+            return FetchItem(items, "Healing potion");
+        }
 
-            if (!PurchaseItem(item.Id))
+        public ItemInfo PickALevelUpItem(List<ItemInfo> items, int userBalance)
+        {
+            if (userBalance > 400)
             {
-                // write some logs here
-                return false;
+                return FetchItem(items, "Potion of Awesome Wings");
             }
 
-            return true;
-        }
-
-        public bool PurchaseLevels()
-        {
-            if (UserInfo.Gold > 400)
+            if (userBalance > 200)
             {
-                var item = FetchItem("Potion of Awesome Wings");
-                return PurchaseItem(item.Id);
+                return  FetchItem(items, "Claw Sharpening");
             }
 
-            if (UserInfo.Gold > 200)
-            {
-                var item = FetchItem("Claw Sharpening");
-                return PurchaseItem(item.Id);
-            }
-               
-            return false;
+            return null;
         }
 
-        private ItemInfo FetchItem(string itemName)
+        private ItemInfo FetchItem(List<ItemInfo> items, string itemName)
         {
-            return _items.Where(i => i.Name.Equals(itemName)).FirstOrDefault();
+            return items.Where(i => i.Name.Equals(itemName)).FirstOrDefault();
         }
-
-        private bool PurchaseItem(string itemId)
-        {
-            var result = ShopService.Purchase(UserInfo.GameId, itemId).Result;
-            
-            if (result.ShoppingSuccess)
-            {
-                UserInfo.Gold = result.Gold;
-                UserInfo.Level = result.Level;
-                UserInfo.Lives = result.Lives;
-                UserInfo.Turn = result.Turn;
-            }
-                // UserInfo = Mapper.Map<PurchaseResult, UserInfo>(result);
-
-            return result.ShoppingSuccess;            
-        }
-
     }
 }

@@ -1,39 +1,74 @@
 using System.Threading.Tasks;
 using DragonTrainer.Backend.Services.Http;
-using Newtonsoft.Json;
 using NUnit.Framework;
-using DragonTrainer.Backend.DTOs;
-using System.Net.Http;
+using Moq;
 using DragonTrainer.Backend.Services;
-using System;
+using System.Linq;
+using System.Net.Http;
 
 namespace DragonTrainer.Backend.Test.Services
 {
     [TestFixture]
     public class ShopServiceTests
     {
-       [SetUp] 
-       public void SetUp()
-       {
+        private Mock<IGameRequestor> _requestor;
+        private ShopService _shopService;
 
-       }
+        [SetUp]
+        public void SetUp()
+        {
+            _requestor = new Mock<IGameRequestor>();
+            _shopService = new ShopService(_requestor.Object);
+        }
 
-       [Test]
-       public async Task Purchase_Scenario_Return()
-       {
-            var gameRequestor = new GameRequestor(new HttpClient());
-            var newGameResult = await gameRequestor.PostRequest(
-                "https://dragonsofmugloar.com/api/v2/game/start",
-                null
-                );
-            var gameInfo = JsonConvert.DeserializeObject<GameInfo>(newGameResult);
+        [Test]
+        public async Task GetItemList_RequestSuccessful_ReturnItems()
+        {
+            var json = "[ { \"Id\": \"abc\" },  { \"Id\": \"dong\" } ]";
+            _requestor.Setup(g => g.GetRequest(It.IsAny<string>()))
+                          .Returns(Task.FromResult(json));
 
-            var shopService = new ShopService(gameRequestor);
-            var itemList = await shopService.GetItemList(gameInfo.GameId);
-            var result = await shopService.Purchase(itemList[0].Id, gameInfo.GameId);
+            var result = await _shopService.GetItemList(It.IsAny<string>());
 
-            Console.WriteLine(
-                $" Success: {result.ShoppingSuccess}, Gold: {result.Gold}, Level: {result.Level}, Turn: {result.Turn}, Lives: {result.Lives}");
-       }
+            Assert.That(result.FirstOrDefault().Id, Is.EqualTo("abc"));
+        }
+
+        [Test]
+        public void GetItemList_IncorrectUri_ThrowHttpRequestException()
+        {
+            _requestor.Setup(g => g.GetRequest(It.IsAny<string>()))
+                        .Throws(new HttpRequestException());
+
+            Assert.That(
+                () => _shopService.GetItemList(It.IsAny<string>()),
+                Throws.Exception.TypeOf<HttpRequestException>()
+            );
+        }
+
+        [Test]
+        public async Task Purchase_RequestSuccessful_ReturnPurchaseResult()
+        {
+            var json = "{ \"ShoppingSuccess\": \"true\" }";
+            _requestor.Setup(g => g.PostRequest(It.IsAny<string>(), null))
+                          .Returns(Task.FromResult(json));
+
+            var result = await _shopService.Purchase(It.IsAny<string>(), It.IsAny<string>());
+
+            Assert.That(
+                result.ShoppingSuccess, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void Purchase_IncorrectUri_ThrowhttpRequestException()
+        {
+            _requestor.Setup(g => g.PostRequest(It.IsAny<string>(), null))
+                          .Throws(new HttpRequestException());
+
+            Assert.That(
+                () => _shopService.Purchase(It.IsAny<string>(), It.IsAny<string>()),
+                Throws.Exception.TypeOf<HttpRequestException>()
+            );
+        }
+
     }
 }

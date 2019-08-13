@@ -6,13 +6,13 @@ using Newtonsoft.Json;
 
 namespace DragonTrainer.Backend.Services
 {
-    public class InvestigationService
+    public class InvestigationService : IInvestigationService
     {
-        private readonly GameRequestor _requestor;
+        private readonly IGameRequestor _requestor;
         private readonly string _baseUri;
         private readonly string _investigationUri;
 
-        public InvestigationService(GameRequestor gameRequestor)
+        public InvestigationService(IGameRequestor gameRequestor)
         {
             _requestor = gameRequestor;
             _baseUri = "https://dragonsofmugloar.com";
