@@ -4,7 +4,7 @@
 
 * [Dragon Trainer](#dragon-trainer)   
   * [Picture of logic](#picture-of-logic)  
-  * [10 Times Record](#ten-times-test-record)
+  * [10 Times Record](#10-times-test-record)
   * [Package Requirements](#package-requirements)  
   * [Usage](#usage)  
   * [Directory Structure](#directory-structure)  
