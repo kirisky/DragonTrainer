@@ -132,5 +132,5 @@ Encrypted 2
 100 gold add 1 level
 
 #### Turns will affect the rate of success
-The difficulty is higher when the The number of Turns is bigger.  
+The difficulty is higher when the the number of Turns is bigger.  
 The difficulty is higher when the score is higher.
