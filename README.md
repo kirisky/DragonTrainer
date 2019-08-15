@@ -152,8 +152,9 @@ only pick missions in difficulties with the following difficulty order
 10. Suicide mission
 
 When refresh the mission board, the gold have been checked.  
-If gold is greater than 300, buy buffs that cost 300 golds until you gold less then 400.  
-Once mission failed, check your lives and buy buffs.
+If gold is greater than 400, buy levels that cost 300 golds until you gold less then 400.  
+If gold is greater than 200, buy levels that cost 100 golds until you gold less then 200.  
+Once mission failed, check your lives and buy levels.
 
 
 #### Special Symbol
