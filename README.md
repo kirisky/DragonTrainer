@@ -139,7 +139,7 @@ dotnet test
 ## Mission Description
 
 #### solution
-only pick missions in difficulties with the following difficulty order
+only pick missions in difficulties with the following difficulty order. That means pick Sure thing first. If you cannot find sure thing anymore, pick piece of cake. And so on.
 1. Sure thing
 2. Piece of cake
 3. Walk in the park
@@ -151,10 +151,9 @@ only pick missions in difficulties with the following difficulty order
 9. Playing with fire
 10. Suicide mission
 
-When refresh the mission board, the gold have been checked.  
+Once mission failed, check your lives and buy levels.
 If gold is greater than 400, buy levels that cost 300 golds until you gold less then 400.  
 If gold is greater than 200, buy levels that cost 100 golds until you gold less then 200.  
-Once mission failed, check your lives and buy levels.
 
 
 #### Special Symbol
