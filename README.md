@@ -91,7 +91,7 @@ dotnet test
 │       └───Http
 ```
 
-#### Core
+### Core
 - `Game.cs` defines the logic of the game.
 
 ##### Missions
@@ -104,7 +104,7 @@ dotnet test
 - `IProcurementSolution.cs` defines an interface for different shopping solutions. But for now, there is only one solution.
 - `NewbieProcurementSolution.cs` implements the methods of `IProcurementSolution.cs`.
 
-#### DTOs
+### DTOs
 - `GameInfo.cs` is a container for the information from `/api/v2/game/start`
 - `UserInfo.cs` is a container for user information. It contains the states of the game.
 
@@ -120,12 +120,12 @@ dotnet test
 - `ItemInfo.cs` is a container for information from `/api/v2/:gameId/shop`
 - `PurchaseResult.cs` is a container for information from `/api/v2/cs/shop/buy/KBvS5yT4`
 
-#### Helpers
+### Helpers
 - `InfoHelper.cs` defines some static methods for displaying information on the console.
 - `MapperHelper.cs` defines some operationgs for AutoMapper
 - `ProbabilityHelper.cs` defines some properties for the difficulties of missions.
 
-#### Services
+### Services
 - `GameService.cs` defines methods to send requests to `/api/v2/game/start`
 - `InvestigationService.cs` defines methods to send requests to `/api/v2/:gameId/investigate/reputation`
 - `MissionService.cs` defines methods to send requests to `/api/v2/:gameId/messages` and `/api/v2/:gameId/solve/:adId`
