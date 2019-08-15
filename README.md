@@ -97,12 +97,12 @@ dotnet test
 ##### Missions
 - `MissionBoard.cs` defines a few operations of the Mission Board.
 - `IWarrior.cs` defines an interface for different `Warriors`. But for now, there is only one Warrior.
-- `NewbieWarrior.cs` implements the methods of `IWarrior.cs`.
+- `NewbieWarrior.cs` implements the methods of `IWarrior.cs`. And it includes logics of the refreshing mission board, picking missions and solve missions.
 
 ##### Shopping
 - `Store.cs` defines a few operations of the Shop.
 - `IProcurementSolution.cs` defines an interface for different shopping solutions. But for now, there is only one solution.
-- `NewbieProcurementSolution.cs` implements the methods of `IProcurementSolution.cs`.
+- `NewbieProcurementSolution.cs` implements the methods of `IProcurementSolution.cs`. And it includes logics of fetching item list and buying potions and levels.
 
 ### DTOs
 - `GameInfo.cs` is a container for the information from `/api/v2/game/start`
